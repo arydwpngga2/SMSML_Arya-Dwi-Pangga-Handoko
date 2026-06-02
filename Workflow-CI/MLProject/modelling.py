@@ -40,3 +40,14 @@ os.makedirs("artifacts", exist_ok=True)
 
 with open("artifacts/result.txt", "w") as f:
     f.write(f"Accuracy: {acc}")
+
+with mlflow.start_run() as run:
+    run_id = run.info.run_id
+    print("RUN_ID =", run_id)
+
+    model.fit(X_train, y_train)
+
+    mlflow.sklearn.log_model(
+        model,
+        "model"
+    )

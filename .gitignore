@@ -1,0 +1,6 @@
+Membangun_model/mlruns/
+Membangun_model/mlflow.db
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

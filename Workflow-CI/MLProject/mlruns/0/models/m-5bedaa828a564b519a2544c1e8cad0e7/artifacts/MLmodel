@@ -1,0 +1,42 @@
+artifact_path: file:D:/learn path/SMSML_Arya-Dwi-Pangga-Handoko/Workflow-CI/MLProject/mlruns/0/models/m-5bedaa828a564b519a2544c1e8cad0e7/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+is_signature_from_type_hint: false
+mlflow_version: 3.13.0
+model_id: m-5bedaa828a564b519a2544c1e8cad0e7
+model_size_bytes: 17824958
+model_uuid: m-5bedaa828a564b519a2544c1e8cad0e7
+prompts: null
+run_id: 5c594a03e37e488aba68693469c56737
+signature:
+  inputs: '[{"type": "long", "name": "gender", "required": true}, {"type": "long",
+    "name": "SeniorCitizen", "required": true}, {"type": "long", "name": "Partner",
+    "required": true}, {"type": "long", "name": "Dependents", "required": true}, {"type":
+    "double", "name": "tenure", "required": true}, {"type": "long", "name": "PhoneService",
+    "required": true}, {"type": "long", "name": "MultipleLines", "required": true},
+    {"type": "long", "name": "InternetService", "required": true}, {"type": "long",
+    "name": "OnlineSecurity", "required": true}, {"type": "long", "name": "OnlineBackup",
+    "required": true}, {"type": "long", "name": "DeviceProtection", "required": true},
+    {"type": "long", "name": "TechSupport", "required": true}, {"type": "long", "name":
+    "StreamingTV", "required": true}, {"type": "long", "name": "StreamingMovies",
+    "required": true}, {"type": "long", "name": "Contract", "required": true}, {"type":
+    "long", "name": "PaperlessBilling", "required": true}, {"type": "long", "name":
+    "PaymentMethod", "required": true}, {"type": "double", "name": "MonthlyCharges",
+    "required": true}, {"type": "double", "name": "TotalCharges", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-06-02 01:17:06.531288'

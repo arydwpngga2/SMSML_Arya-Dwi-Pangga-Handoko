@@ -1,5 +1,9 @@
 Membangun_model/mlruns/
 Membangun_model/mlflow.db
+Workflow-CI/MLProject/mlruns/
+Workflow-CI/MLProject/mlflow.db
+Workflow-CI/MLProject/artifacts/*
+!Workflow-CI/MLProject/artifacts/result.txt
 
 __pycache__/
 *.pyc

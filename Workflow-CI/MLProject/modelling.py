@@ -1,6 +1,7 @@
 import pandas as pd
 import mlflow
 import mlflow.sklearn
+import os
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -34,3 +35,8 @@ acc = accuracy_score(
 )
 
 print("Accuracy:", acc)
+
+os.makedirs("artifacts", exist_ok=True)
+
+with open("artifacts/result.txt", "w") as f:
+    f.write(f"Accuracy: {acc}")

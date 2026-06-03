@@ -2,9 +2,6 @@ import pandas as pd
 import mlflow
 import mlflow.sklearn
 
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
-mlflow.set_experiment("Telco_Churn")
-
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
@@ -14,17 +11,20 @@ from sklearn.metrics import (
     f1_score
 )
 
-# aktifkan autolog
+# MLflow setup
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("Telco_Churn")
+
+# Autolog supaya parameter muncul
 mlflow.sklearn.autolog()
 
-# load data
+# Load data
 df = pd.read_csv("telco_preprocessing.csv")
 
-# fitur dan target
 X = df.drop("Churn", axis=1)
 y = df["Churn"]
 
-# split data
+# Split data
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -33,24 +33,32 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
-# model
+# Model
 model = RandomForestClassifier(
     random_state=42
 )
 
-# training
-model.fit(X_train, y_train)
+with mlflow.start_run():
 
-# prediksi
-y_pred = model.predict(X_test)
+    # Training
+    model.fit(X_train, y_train)
 
-# evaluasi
-acc = accuracy_score(y_test, y_pred)
-prec = precision_score(y_test, y_pred)
-rec = recall_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred)
+    # Prediksi
+    y_pred = model.predict(X_test)
 
-print(f"Accuracy : {acc:.4f}")
-print(f"Precision: {prec:.4f}")
-print(f"Recall   : {rec:.4f}")
-print(f"F1 Score : {f1:.4f}")
+    # Evaluasi
+    acc = accuracy_score(y_test, y_pred)
+    prec = precision_score(y_test, y_pred)
+    rec = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+
+    # Log metrics
+    mlflow.log_metric("accuracy", acc)
+    mlflow.log_metric("precision", prec)
+    mlflow.log_metric("recall", rec)
+    mlflow.log_metric("f1_score", f1)
+
+    print(f"Accuracy : {acc:.4f}")
+    print(f"Precision: {prec:.4f}")
+    print(f"Recall   : {rec:.4f}")
+    print(f"F1 Score : {f1:.4f}")

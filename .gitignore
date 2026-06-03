@@ -4,6 +4,7 @@ Workflow-CI/MLProject/mlruns/
 Workflow-CI/MLProject/mlflow.db
 Workflow-CI/MLProject/artifacts/*
 !Workflow-CI/MLProject/artifacts/result.txt
+../mlflow.db
 
 __pycache__/
 *.pyc
